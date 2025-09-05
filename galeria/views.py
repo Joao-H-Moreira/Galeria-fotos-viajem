@@ -9,7 +9,10 @@ def home(request):
 def pais_detail(request, id):
     pais = get_object_or_404(Pais, pk=id)
     
-    return render(request, 'galeria/pais.html',{'pais':pais})
+    context = {
+        'pais': pais,
+    }
+    return render(request, 'galeria/pais.html', context)
 
 def pesquisar_pais(request):
     query = request.GET.get('q')
@@ -19,7 +22,7 @@ def pesquisar_pais(request):
     
     context = {
         'query': query,
-        'resultados': resultados
+        'resultados': resultados,
     }
     
     return render(request, 'galeria/pesquisa.html', context)
